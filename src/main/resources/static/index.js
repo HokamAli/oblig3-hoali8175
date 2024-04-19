@@ -13,6 +13,10 @@ function hentAlleKunder() {
 }
 
 function formaterKunder(kunder){
+    // Sorterer kundene etter etternavn
+    kunder.sort((a, b) => (a.etternavn > b.etternavn) ? 1 : -1);
+
+
     let ut = "<table class='table table-striped'>" +
         "<tr>" +
         "<th>Filmnavn</th><th>Antall</th><th>Fornavn</th><th>Etternavn</th><th>Telefonnummer</th><th>Epost</th><th></th>" +
