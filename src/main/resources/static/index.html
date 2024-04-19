@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html lang="no">
+<head>
+    <title>Billettregister</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="index.js"></script>
+    <script src="validering.js"></script>
+</head>
+<body>
+
+<h1>Billettregister-OBLIG3-hoali8175</h1>
+
+
+<form class="form">
+    <table>
+        <tr>
+            <td><label for="filmnavn">Filmnavn</label></td>
+            <td>
+                <select class="form-control" type="text" id="filmnavn" onchange="validerFilmnavn(this.value)">
+                    <option value="" selected disabled>Velg filmnavn her</option>
+                    <option>Indiana Jones and the Dial of Destiny</option>
+                    <option>Avengers Infinity War</option>
+                    <option>Spiderman Far From Home</option>
+                </select>
+                <span id="feilFilmnavn" style="color: red"></span>
+            </td>
+        </tr>
+
+        <tr>
+            <td><label for="antall">Antall</label></td>
+            <td>
+                <input type="number" id="antall" min="1" max="9" onchange="validerAntall(this.value)"/>
+                <span id="feilAntall" style="color:red"></span>
+            </td>
+        </tr>
+
+        <tr>
+            <td><label for="fornavn">Fornavn</label></td>
+            <td>
+                <input class="form-control" type="text" id="fornavn" onchange="validerFornavn(this.value)"/>
+                <span id="feilFornavn" style="color:red"></span>
+            </td>
+        </tr>
+
+        <tr>
+            <td><label for="etternavn">Etternavn</label></td>
+            <td>
+                <input class="form-control" type="text" id="etternavn" onchange="validerEtternavn(this.value)"/>
+                <span id="feilEtternavn" style="color:red"></span>
+            </td>
+        </tr>
+
+        <tr>
+            <td><label for="telefonnummer">Telefonnummer</label></td>
+            <td>
+                <input class="form-control" type="text" id="telefonnummer" onchange="validerTelefonnummer(this.value)"/>
+                <span id="feilTelefonnummer" style="color:red"></span>
+            </td>
+        </tr>
+
+        <tr>
+            <td><label for="epost">Epost</label></td>
+            <td>
+                <input class="form-control" type="text" id="epost" onchange="validerEpost(this.value)"/>
+                <span id="feilEpost" style="color:red"></span>
+            </td>
+        </tr>
+    </table>
+
+    <input type="button" id="reg" value="Bestill" onClick="validerOgLagreKunde()" class="btn btn-primary">
+
+    <div id="feil" style="color: red"></div>
+</form>
+
+
+<!-- Overskrift for alle billetter -->
+<h2>Alle billetter:</h2>
+<table class="table">
+    <div id="kundene"></div>
+</table>
+
+
+<a class="btn btn-danger" onclick="slettKundene()">Slett alle kunder</a>
+</div>
+</body>
+</html>
