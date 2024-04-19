@@ -29,7 +29,7 @@ function formaterKunder(kunder){
             "<td>"+kunde.etternavn+"</td>"+
             "<td>"+kunde.telefonnummer+"</td>"+
             "<td>"+kunde.epost+"</td>"+
-            "<td> <a class='btn btn-primary' href='endreKunde.html?id="+kunde.id+"'>Endre</a></td>"+
+            "<td> <a class='btn btn-primary' href="+kunde.id+"'endreBillett.html?id='>Endre</a></td>"+
             "<td> <button class='btn btn-danger' onclick='slettEnKunde("+kunde.id+")'>Slett</button></td>"+
             "</tr>";
     }
