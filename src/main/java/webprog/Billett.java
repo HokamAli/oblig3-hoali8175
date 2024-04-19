@@ -1,6 +1,6 @@
 package webprog;
 
-public class Kunde {
+public class Billett {
     private int id;
     private String filmnavn;
     private String antall;
@@ -9,10 +9,10 @@ public class Kunde {
     private String telefonnummer;
     private String epost;
 
-    public Kunde() {
+    public Billett() {
     }
 
-    public Kunde(int id, String filmnavn, String antall, String fornavn, String etternavn, String telefonnummer, String epost) {
+    public Billett(int id, String filmnavn, String antall, String fornavn, String etternavn, String telefonnummer, String epost) {
         this.id = id;
         this.filmnavn = filmnavn;
         this.antall = antall;

@@ -10,17 +10,17 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class KundeRepository {
+public class BillettRepository {
 
     @Autowired
     private JdbcTemplate db;
 
-    private static final Logger logger = LoggerFactory.getLogger(KundeRepository.class);
+    private static final Logger logger = LoggerFactory.getLogger(BillettRepository.class);
 
-    public boolean lagreKunde(Kunde kunde) {
+    public boolean lagreKunde(Billett billett) {
         String sql = "INSERT INTO Kunde (filmnavn,antall,fornavn,etternavn,telefonnummer,epost) VALUES(?,?,?,?,?,?)";
         try{
-            db.update(sql,kunde.getFilmnavn(),kunde.getAntall(),kunde.getFornavn(),kunde.getEtternavn(),kunde.getTelefonnummer(),kunde.getEpost());
+            db.update(sql, billett.getFilmnavn(), billett.getAntall(), billett.getFornavn(), billett.getEtternavn(), billett.getTelefonnummer(), billett.getEpost());
             return true;
         }
         catch(Exception e){
@@ -29,10 +29,10 @@ public class KundeRepository {
         }
     }
 
-    public List<Kunde> hentAlleKunder() {
+    public List<Billett> hentAlleKunder() {
         String sql = "SELECT * FROM Kunde";
         try{
-            List<Kunde> alleKunder = db.query(sql,new BeanPropertyRowMapper(Kunde.class));
+            List<Billett> alleKunder = db.query(sql,new BeanPropertyRowMapper(Billett.class));
             return alleKunder;
         }
         catch (Exception e){
@@ -41,11 +41,11 @@ public class KundeRepository {
         }
     }
 
-    public Kunde hentEnKunde(int id) {
+    public Billett hentEnKunde(int id) {
         String sql = "SELECT * FROM Kunde WHERE id=?";
         try{
-            Kunde enKunde = db.queryForObject(sql,BeanPropertyRowMapper.newInstance(Kunde.class),id);
-            return enKunde;
+            Billett enBillett = db.queryForObject(sql,BeanPropertyRowMapper.newInstance(Billett.class),id);
+            return enBillett;
         }
         catch(Exception e) {
             logger.error("Feil i hentEnKunde : " + e);
@@ -53,10 +53,10 @@ public class KundeRepository {
         }
     }
 
-    public boolean endreEnKunde(Kunde kunde){
+    public boolean endreEnKunde(Billett billett){
         String sql = "UPDATE Kunde SET filmnavn=?,antall=?,fornavn=?,etternavn=?,telefonnummer=?,epost=? where id=?";
         try{
-            db.update(sql,kunde.getFilmnavn(),kunde.getAntall(),kunde.getFornavn(),kunde.getEtternavn(),kunde.getTelefonnummer(),kunde.getEpost(),kunde.getId());
+            db.update(sql, billett.getFilmnavn(), billett.getAntall(), billett.getFornavn(), billett.getEtternavn(), billett.getTelefonnummer(), billett.getEpost(), billett.getId());
             return true;
         }
         catch(Exception e){
