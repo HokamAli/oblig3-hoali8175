@@ -1,10 +1,10 @@
 $(function(){
-    hentAlleKunder();
+    hentAlleBilletter();
 });
 
-function hentAlleKunder() {
-    $.get( "/hentKunder", function( kunder ) {
-        formaterKunder(kunder);
+function hentAlleBilletter() {
+    $.get( "/hentBilletter", function( billetter ) {
+        formaterBilletter(billetter);
     })
         .fail(function(jqXHR) {
             const json = $.parseJSON(jqXHR.responseText);
@@ -12,32 +12,32 @@ function hentAlleKunder() {
         });
 }
 
-function formaterKunder(kunder){
-    // Sorterer kundene etter etternavn
-    kunder.sort((a, b) => (a.etternavn > b.etternavn) ? 1 : -1);
+function formaterBilletter(billetter){
+    // Sorterer billettene etter etternavn
+    billetter.sort((a, b) => (a.etternavn > b.etternavn) ? 1 : -1);
 
 
     let ut = "<table class='table table-striped'>" +
         "<tr>" +
         "<th>Filmnavn</th><th>Antall</th><th>Fornavn</th><th>Etternavn</th><th>Telefonnummer</th><th>Epost</th><th></th>" +
         "</tr>";
-    for(const kunde of kunder ){
+    for(const billett of billetter ){
         ut+="<tr>" +
-            "<td>"+kunde.filmnavn+"</td>"+
-            "<td>"+kunde.antall+"</td>"+
-            "<td>"+kunde.fornavn+"</td>"+
-            "<td>"+kunde.etternavn+"</td>"+
-            "<td>"+kunde.telefonnummer+"</td>"+
-            "<td>"+kunde.epost+"</td>"+
-            "<td> <a class='btn btn-primary' href="+kunde.id+"'endreBillett.html?id='>Endre</a></td>"+
-            "<td> <button class='btn btn-danger' onclick='slettEnKunde("+kunde.id+")'>Slett</button></td>"+
+            "<td>"+billett.filmnavn+"</td>"+
+            "<td>"+billett.antall+"</td>"+
+            "<td>"+billett.fornavn+"</td>"+
+            "<td>"+billett.etternavn+"</td>"+
+            "<td>"+billett.telefonnummer+"</td>"+
+            "<td>"+billett.epost+"</td>"+
+            "<td> <a class='btn btn-primary' href="+billett.id+"'endreBillett.html?id='>Endre</a></td>"+
+            "<td> <button class='btn btn-danger' onclick='slettEnBillett("+billett.id+")'>Slett</button></td>"+
             "</tr>";
     }
-    $("#kundene").html(ut);
+    $("#billettene").html(ut);
 }
 
-function slettEnKunde(id) {
-    const url = "/slettEnKunde?id="+id;
+function slettEnBillett(id) {
+    const url = "/slettEnBillett?id="+id;
     $.get( url, function() {
         window.location.href = 'index.html';
     })
@@ -47,8 +47,8 @@ function slettEnKunde(id) {
         });
 }
 
-function slettKundene() {
-    $.get( "/slettAlleKunder", function() {
+function slettBillettene() {
+    $.get( "/slettAlleBilletter", function() {
         window.location.href = 'index.html';
     })
         .fail(function(jqXHR) {
@@ -57,7 +57,7 @@ function slettKundene() {
         });
 }
 
-function validerOgLagreKunde(){
+function validerOgLagreBillett(){
     const filmnavnOK = validerFilmnavn($("#filmnavn").val());
     const antallOK = validerAntall($("#antall").val());
     const fornavnOK = validerFornavn($("#fornavn").val());
@@ -65,12 +65,12 @@ function validerOgLagreKunde(){
     const telefonnummerOK = validerTelefonnummer($("#telefonnummer").val());
     const epostOK = validerEpost($("#epost").val());
     if (filmnavnOK && antallOK && fornavnOK && etternavnOK && telefonnummerOK && epostOK){
-        lagreKunde();
+        lagreBillett();
     }
 }
 
-function lagreKunde() {
-    const kunde = {
+function lagreBillett() {
+    const billett = {
         filmnavn : $("#filmnavn").val(),
         antall : $("#antall").val(),
         fornavn : $("#fornavn").val(),
@@ -78,7 +78,7 @@ function lagreKunde() {
         telefonnummer : $("#telefonnummer").val(),
         epost : $("#epost").val(),
     };
-    const url = "/lagreKunde";
+    const url = "/lagreBillett";
     $.post( url, kunde, function() {
         window.location.href = 'index.html';
     })

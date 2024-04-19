@@ -17,74 +17,74 @@ public class BillettRepository {
 
     private static final Logger logger = LoggerFactory.getLogger(BillettRepository.class);
 
-    public boolean lagreKunde(Billett billett) {
-        String sql = "INSERT INTO Kunde (filmnavn,antall,fornavn,etternavn,telefonnummer,epost) VALUES(?,?,?,?,?,?)";
+    public boolean lagreBillett(Billett billett) {
+        String sql = "INSERT INTO Billett (filmnavn,antall,fornavn,etternavn,telefonnummer,epost) VALUES(?,?,?,?,?,?)";
         try{
             db.update(sql, billett.getFilmnavn(), billett.getAntall(), billett.getFornavn(), billett.getEtternavn(), billett.getTelefonnummer(), billett.getEpost());
             return true;
         }
         catch(Exception e){
-            logger.error("Feil i lagreKunde : "+e);
+            logger.error("Feil i lagreBillett : "+e);
             return false;
         }
     }
 
-    public List<Billett> hentAlleKunder() {
-        String sql = "SELECT * FROM Kunde";
+    public List<Billett> hentAlleBilletter() {
+        String sql = "SELECT * FROM Billett";
         try{
-            List<Billett> alleKunder = db.query(sql,new BeanPropertyRowMapper(Billett.class));
-            return alleKunder;
+            List<Billett> alleBilletter = db.query(sql,new BeanPropertyRowMapper(Billett.class));
+            return alleBilletter;
         }
         catch (Exception e){
-            logger.error("Feil i hentAlleKunder : "+e);
+            logger.error("Feil i hentAlleBilletter : "+e);
             return null;
         }
     }
 
-    public Billett hentEnKunde(int id) {
-        String sql = "SELECT * FROM Kunde WHERE id=?";
+    public Billett hentEnBillett(int id) {
+        String sql = "SELECT * FROM Billett WHERE id=?";
         try{
             Billett enBillett = db.queryForObject(sql,BeanPropertyRowMapper.newInstance(Billett.class),id);
             return enBillett;
         }
         catch(Exception e) {
-            logger.error("Feil i hentEnKunde : " + e);
+            logger.error("Feil i hentEnBillett : " + e);
             return null;
         }
     }
 
-    public boolean endreEnKunde(Billett billett){
-        String sql = "UPDATE Kunde SET filmnavn=?,antall=?,fornavn=?,etternavn=?,telefonnummer=?,epost=? where id=?";
+    public boolean endreEnBillett(Billett billett){
+        String sql = "UPDATE Billett SET filmnavn=?,antall=?,fornavn=?,etternavn=?,telefonnummer=?,epost=? where id=?";
         try{
             db.update(sql, billett.getFilmnavn(), billett.getAntall(), billett.getFornavn(), billett.getEtternavn(), billett.getTelefonnummer(), billett.getEpost(), billett.getId());
             return true;
         }
         catch(Exception e){
-            logger.error("Feil i endreEnKunde : "+e);
+            logger.error("Feil i endreEnBillett : "+e);
             return false;
         }
     }
 
-    public boolean slettEnKunde(int id) {
-        String sql = "DELETE FROM Kunde WHERE id=?";
+    public boolean slettEnBillett(int id) {
+        String sql = "DELETE FROM Billett WHERE id=?";
         try {
             db.update(sql,id);
             return true;
         }
         catch(Exception e){
-            logger.error("Feil i slettEnKunde : "+e);
+            logger.error("Feil i slettEnBillett : "+e);
             return false;
         }
     }
 
-    public boolean slettAlleKunder () {
-        String sql = "DELETE FROM Kunde";
+    public boolean slettAlleBilletter () {
+        String sql = "DELETE FROM Billetter";
         try {
             db.update(sql);
             return true;
         }
         catch(Exception e){
-            logger.error("Feil i slettAlleKunder : "+e);
+            logger.error("Feil i slettAlleBilletter : "+e);
             return false;
         }
     }

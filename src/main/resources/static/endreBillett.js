@@ -17,7 +17,7 @@ $(function(){
         });
 });
 
-function validerOgEndreKunden(){
+function validerOgEndreBilletten(){
     const filmnavnOK = validerFilmnavn($("#filmnavn").val());
     const antallOK = validerAntall($("#antall").val());
     const fornavnOK = validerFornavn($("#fornavn").val());
@@ -25,14 +25,14 @@ function validerOgEndreKunden(){
     const telefonnummerOK = validerTelefonnummer($("#telefonnummer").val());
     const epostOK = validerEpost($("#epost").val());
     if (filmnavnOK && antallOK && fornavnOK && etternavnOK && telefonnummerOK && epostOK){
-        endreKunden();
+        endreBilletten();
         return true;
     }
     return false;
 }
 
-function endreKunden() {
-    const kunde = {
+function endreBilletten() {
+    const billett = {
         id : $("#id").val(), // må ha med denne som ikke har blitt endret for å vite hvilken kunde som skal endres
         filmnavn : $("#filmnavn").val(),
         antall : $("#antall").val(),
@@ -41,7 +41,7 @@ function endreKunden() {
         telefonnummer : $("#telefonnummer").val(),
         epost : $("#epost").val()
     };
-    $.post("/endreEnKunde",kunde,function(){
+    $.post("/endreEnBillett",billett,function(){
         window.location.href = "/";
     })
         .fail(function(jqXHR) {

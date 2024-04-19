@@ -20,7 +20,7 @@ public class BillettController {
 
     private Logger logger = LoggerFactory.getLogger(BillettController.class);
 
-    private boolean validerKunde(Billett billett){
+    private boolean validerBillett(Billett billett){
         //String regexNavn = "[a-zA-ZæøåÆØÅ. \\-]{2,20}";
         String regexFilmnavn = "(Indiana Jones and the Dial of Destiny|Avengers Infinity War|Spiderman Far From Home)";
         String regexAntall = "[0-9.\\-]{1,9}";
@@ -43,58 +43,58 @@ public class BillettController {
         return false;
     }
 
-    @PostMapping("/lagreKunde")
-    public void lagreKunde(Billett billett, HttpServletResponse response) throws IOException {
-        if(!validerKunde(billett)){
+    @PostMapping("/lagreBillett")
+    public void lagreBillett(Billett billett, HttpServletResponse response) throws IOException {
+        if(!validerBillett(billett)){
             response.sendError(HttpStatus.INTERNAL_SERVER_ERROR.value(),"Feil i Validering - prøv igjen");
         }
         else {
-            if(!rep.lagreKunde(billett)) {
+            if(!rep.lagreBillett(billett)) {
                 response.sendError(HttpStatus.INTERNAL_SERVER_ERROR.value(),"Feil i DB - prøv igjen");
             }
         }
     }
 
-    @GetMapping("/hentKunder")
+    @GetMapping("/hentBilletter")
     public List<Billett> hentAlle (HttpServletResponse response) throws IOException {
-        List<Billett> alleKunder = rep.hentAlleKunder();
-        if(alleKunder==null) {
+        List<Billett> alleBilletter = rep.hentAlleBilletter();
+        if(alleBilletter==null) {
             response.sendError(HttpStatus.INTERNAL_SERVER_ERROR.value(),"Feil i DB - prøv igjen");
         }
-        return alleKunder;
+        return alleBilletter;
     }
 
-    @GetMapping("/hentEnKunde")
-    public Billett hentEnKunde(int id, HttpServletResponse response) throws IOException {
-        Billett kunden = rep.hentEnKunde(id);
-        if(kunden == null){
+    @GetMapping("/hentEnBillett")
+    public Billett hentEnBillett(int id, HttpServletResponse response) throws IOException {
+        Billett billetten = rep.hentEnBillett(id);
+        if(billetten == null){
             response.sendError(HttpStatus.INTERNAL_SERVER_ERROR.value(),"Feil i DB - prøv igjen");
         }
-        return kunden;
+        return billetten;
     }
 
-    @PostMapping("/endreEnKunde")
-    public void endreEnKunde(Billett billett, HttpServletResponse response) throws IOException{
-        if(!validerKunde(billett)) {
+    @PostMapping("/endreEnBillett")
+    public void endreEnBillett(Billett billett, HttpServletResponse response) throws IOException{
+        if(!validerBillett(billett)) {
             response.sendError(HttpStatus.INTERNAL_SERVER_ERROR.value(),"Feil i Validering - prøv igjen");
         }
         else {
-            if(!rep.endreEnKunde(billett)){
+            if(!rep.endreEnBillett(billett)){
                 response.sendError(HttpStatus.INTERNAL_SERVER_ERROR.value(),"Feil i DB - prøv igjen");
             }
         }
     }
 
-    @GetMapping("/slettEnKunde")
-    public void slettEnKunde(int id,HttpServletResponse response) throws IOException{
-        if(!rep.slettEnKunde(id)){
+    @GetMapping("/slettEnBillett")
+    public void slettEnBillett(int id,HttpServletResponse response) throws IOException{
+        if(!rep.slettEnBillett(id)){
             response.sendError(HttpStatus.INTERNAL_SERVER_ERROR.value(),"Feil i DB - prøv igjen");
         }
     }
 
-    @GetMapping("/slettAlleKunder")
+    @GetMapping("/slettAlleBilletter")
     public void slettAlle(HttpServletResponse response) throws IOException{
-        if(!rep.slettAlleKunder()){
+        if(!rep.slettAlleBilletter()){
             response.sendError(HttpStatus.INTERNAL_SERVER_ERROR.value(),"Feil i DB - prøv igjen");
         }
     }
