@@ -78,7 +78,7 @@ public class BillettRepository {
     }
 
     public boolean slettAlleBilletter () {
-        String sql = "DELETE FROM Billetter";
+        String sql = "DELETE FROM Billett";
         try {
             db.update(sql);
             return true;

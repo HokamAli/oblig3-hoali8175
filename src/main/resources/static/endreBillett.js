@@ -1,15 +1,15 @@
 $(function(){
     // hent kunden med kunde-id fra url og vis denne i skjemaet
     const id = window.location.search.substring(1);
-    const url = "/hentEnKunde?"+id;
-    $.get(url,function(kunde){
-        $("#id").val(kunde.id); // må ha med id inn skjemaet, hidden i html
-        $("#filmnavn").val(kunde.filmnavn);
-        $("#antall").val(kunde.antall);
-        $("#fornavn").val(kunde.fornavn);
-        $("#etternavn").val(kunde.etternavn);
-        $("#telefonnummer").val(kunde.telefonnummer);
-        $("#epost").val(kunde.epost);
+    const url = "/hentEnBillett?"+id;
+    $.get(url,function(billett){
+        $("#id").val(billett.id); // må ha med id inn skjemaet, hidden i html
+        $("#filmnavn").val(billett.filmnavn);
+        $("#antall").val(billett.antall);
+        $("#fornavn").val(billett.fornavn);
+        $("#etternavn").val(billett.etternavn);
+        $("#telefonnummer").val(billett.telefonnummer);
+        $("#epost").val(billett.epost);
     })
         .fail(function(jqXHR) {
             const json = $.parseJSON(jqXHR.responseText);
