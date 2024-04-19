@@ -79,7 +79,7 @@ function lagreBillett() {
         epost : $("#epost").val(),
     };
     const url = "/lagreBillett";
-    $.post( url, kunde, function() {
+    $.post( url, billett, function() {
         window.location.href = 'index.html';
     })
         .fail(function(jqXHR) {
