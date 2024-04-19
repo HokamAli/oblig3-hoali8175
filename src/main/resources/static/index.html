@@ -18,7 +18,7 @@
         <tr>
             <td><label for="filmnavn">Filmnavn</label></td>
             <td>
-                <select class="form-control" type="text" id="filmnavn" onchange="validerFilmnavn(this.value)">
+                <select class="form-control" id="filmnavn" onchange="validerFilmnavn(this.value)">
                     <option value="" selected disabled>Velg filmnavn her</option>
                     <option>Indiana Jones and the Dial of Destiny</option>
                     <option>Avengers Infinity War</option>
@@ -77,12 +77,12 @@
 
 <!-- Overskrift for alle billetter -->
 <h2>Alle billetter:</h2>
-<table class="table">
-    <div id="billettene"></div>
+<table class="table"
+    id="billettene">
 </table>
 
 
 <a class="btn btn-danger" onclick="slettBillettene()">Slett alle billetter</a>
-</div>
+
 </body>
 </html>
