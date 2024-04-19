@@ -29,7 +29,7 @@ function formaterBilletter(billetter){
             "<td>"+billett.etternavn+"</td>"+
             "<td>"+billett.telefonnummer+"</td>"+
             "<td>"+billett.epost+"</td>"+
-            "<td> <a class='btn btn-primary' href="+billett.id+"'endreBillett.html?id='>Endre</a></td>"+
+            "<td> <a class='btn btn-primary' href='endreBillett.html?id="+billett.id+"'>Endre</a></td>"+
             "<td> <button class='btn btn-danger' onclick='slettEnBillett("+billett.id+")'>Slett</button></td>"+
             "</tr>";
     }
