@@ -1,5 +1,5 @@
 $(function(){
-    // hent kunden med kunde-id fra url og vis denne i skjemaet
+    // hent billetten med billett-id fra url og vis denne i skjemaet
     const id = window.location.search.substring(1);
     const url = "/hentEnBillett?"+id;
     $.get(url,function(billett){
@@ -33,7 +33,7 @@ function validerOgEndreBilletten(){
 
 function endreBilletten() {
     const billett = {
-        id : $("#id").val(), // må ha med denne som ikke har blitt endret for å vite hvilken kunde som skal endres
+        id : $("#id").val(), // må ha med denne som ikke har blitt endret for å vite hvilken billett som skal endres
         filmnavn : $("#filmnavn").val(),
         antall : $("#antall").val(),
         fornavn : $("#fornavn").val(),
