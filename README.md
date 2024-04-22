@@ -11,3 +11,5 @@ Fullt Navn: Hokam Ali
 Kort beskrivelse av applikasjon (5-10 setninger):
 
 Program for å kjøpe kinobiletter. Film velges fra en gitt liste som inneholder inputvalidering for der det er input. Hver gang en bilett blir opprettet blir den plassert i en array. Den blir også fremstyilt i skjermen. Programmet inneholder også en knapp som tømmer arrayet. Applikasjonen har beholdt samme funksjonalitet men lagringen har blitt flyttet til tjener/server. Applikasjonen  har også blitt stylet med Bootstrap. Applikasjonen har nå i tillegg blitt justert slik at dataen nå også kan lagres i en database via h2-console. 
+
+Youtube video(dårlig kvalitet): https://www.youtube.com/watch?v=7kcLv3zHDGs
