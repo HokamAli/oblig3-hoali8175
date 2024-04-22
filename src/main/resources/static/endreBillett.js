@@ -18,6 +18,7 @@ $(function(){
 });
 
 function validerOgEndreBilletten(){
+    // Validerer inputfelter og endrer billetten hvis alt er gyldig
     const filmnavnOK = validerFilmnavn($("#filmnavn").val());
     const antallOK = validerAntall($("#antall").val());
     const fornavnOK = validerFornavn($("#fornavn").val());
@@ -32,6 +33,7 @@ function validerOgEndreBilletten(){
 }
 
 function endreBilletten() {
+    // Oppretter et billettobjekt og sender det til serveren for endring
     const billett = {
         id : $("#id").val(), // må ha med denne som ikke har blitt endret for å vite hvilken billett som skal endres
         filmnavn : $("#filmnavn").val(),

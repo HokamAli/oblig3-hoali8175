@@ -13,6 +13,7 @@
   <h1>Endre billett</h1>
   <form class="form">
     <input type="hidden" id="id"/>
+    <!-- Gruppe for filmnavn med etikett og nedtrekksliste -->
     <div class="form-group">
       <label for="filmnavn">Filmnavn</label>
       <select type="text" id="filmnavn" onchange="validerFilmnavn(this.value)">
@@ -23,12 +24,13 @@
       </select>
       <span id="feilFilmnavn" style="color: red"></span>
     </div>
+    <!-- Gruppe for antall billetter med etikett og tallinntastingsfelt -->
     <div class="form-group">
       <label for="antall">Antall</label>
       <input type="number" id="antall" min="1" max="9" onchange="validerAntall(this.value)"/>
       <span id="feilAntall" style="color:red"></span>
     </div>
-
+    <!-- Gruppe for fornavn/etternavn med etikett og tekstinntastingsfelt -->
     <div class="form-group">
       <label for="fornavn">Fornavn</label>
       <input type="text" id="fornavn" onchange="validerFornavn(this.value)"/>
@@ -39,21 +41,24 @@
       <input type="text" id="etternavn" onchange="validerEtternavn(this.value)"/>
       <span id="feilEtternavn" style="color:red"></span>
     </div>
-
+    <!-- Gruppe for telefonnummer med etikett og tekstinntastingsfelt -->
     <div class="form-group">
       <label for="telefonnummer">Telefonnummer</label>
       <input type="text" id="telefonnummer" onchange="validerTelefonnummer(this.value)"/>
       <span id="feilTelefonnummer" style="color:red"></span>
     </div>
+    <!-- Gruppe for e-postadresse med etikett og tekstinntastingsfelt -->
     <div class="form-group">
       <label for="epost">Epost</label>
       <input type="text" id="epost" onchange="validerEpost(this.value)"/>
       <span id="feilEpost" style="color:red"></span>
     </div>
 
+    <!-- Knapp for å sende skjemaet med valideringsfunksjon -->
     <div class="form-group">
       <input type="button" id="reg" value="Endre" class="btn btn-primary" onclick="validerOgEndreBilletten()"/>
     </div>
+    <!-- Element for generell feilmelding -->
     <div id="feil" style="color: red"></div>
   </form>
 </div>

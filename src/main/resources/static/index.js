@@ -1,12 +1,15 @@
 $(function(){
+    // Henter alle billetter når siden lastes
     hentAlleBilletter();
 });
 
 function hentAlleBilletter() {
+    // Henter alle billetter fra serveren og formaterer dem
     $.get( "/hentBilletter", function( billetter ) {
         formaterBilletter(billetter);
     })
         .fail(function(jqXHR) {
+            // Håndterer feil hvis det oppstår problemer under henting av billetter
             const json = $.parseJSON(jqXHR.responseText);
             $("#feil").html(json.message);
         });
@@ -37,6 +40,7 @@ function formaterBilletter(billetter){
 }
 
 function slettEnBillett(id) {
+    // Sletter en billett basert på ID-en og oppdaterer siden
     const url = "/slettEnBillett?id="+id;
     $.get( url, function() {
         window.location.href = 'index.html';
@@ -48,16 +52,19 @@ function slettEnBillett(id) {
 }
 
 function slettBillettene() {
+    // Sletter alle billetter og oppdaterer siden
     $.get( "/slettAlleBilletter", function() {
         window.location.href = 'index.html';
     })
         .fail(function(jqXHR) {
+            // Håndterer feil hvis det oppstår problemer under sletting av alle billetter
             const json = $.parseJSON(jqXHR.responseText);
             $("#feil").html(json.message);
         });
 }
 
 function validerOgLagreBillett(){
+    // Validerer inndata og lagrer billetten hvis alt er gyldig
     const filmnavnOK = validerFilmnavn($("#filmnavn").val());
     const antallOK = validerAntall($("#antall").val());
     const fornavnOK = validerFornavn($("#fornavn").val());
@@ -70,6 +77,7 @@ function validerOgLagreBillett(){
 }
 
 function lagreBillett() {
+    // Lagrer billetten ved å sende data til serveren og oppdaterer siden
     const billett = {
         filmnavn : $("#filmnavn").val(),
         antall : $("#antall").val(),
@@ -83,6 +91,7 @@ function lagreBillett() {
         window.location.href = 'index.html';
     })
         .fail(function(jqXHR) {
+            // Håndterer feil hvis det oppstår problemer under lagring av billett
             const json = $.parseJSON(jqXHR.responseText);
             $("#feil").html(json.message);
         });

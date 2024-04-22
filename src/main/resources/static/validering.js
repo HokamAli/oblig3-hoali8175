@@ -1,4 +1,5 @@
 function validerFilmnavn(filmnavn){
+    // Validerer filmnavn basert på et regulært uttrykk
     const regexp = /^(Indiana Jones and the Dial of Destiny|Avengers Infinity War|Spiderman Far From Home)$/;
     const ok = regexp.test(filmnavn);
     if(!ok){
@@ -12,6 +13,7 @@ function validerFilmnavn(filmnavn){
 }
 
 function validerAntall(antall){
+    // Validerer antall billetter basert på et regulært uttrykk
     const regexp = /^[0-9. \-]{1,9}$/;
     const ok = regexp.test(antall);
     if(!ok){
@@ -50,6 +52,7 @@ function validerEtternavn(etternavn){
 }
 
 function validerTelefonnummer(telefonnummer){
+    // Validerer telefonnummer basert på et regulært uttrykk
     const regexp = /^[0-9. \-]{8}$/;
     const ok = regexp.test(telefonnummer);
     if(!ok){
@@ -63,6 +66,7 @@ function validerTelefonnummer(telefonnummer){
 }
 
 function validerEpost(epost){
+    // Validerer e-postadresse basert på et regulært uttrykk
     const regexp = /^\S+@\S+\.\S\S+$/;
     const ok = regexp.test(epost);
     if(!ok){
